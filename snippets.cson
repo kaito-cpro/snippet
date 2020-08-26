@@ -1,0 +1,658 @@
+# Your snippets
+#
+# Atom snippets allow you to enter a simple prefix in the editor and hit tab to
+# expand the prefix into a larger code block with templated values.
+#
+# You can create a new snippet in this file by typing "snip" and then hitting
+# tab.
+#
+# An example CoffeeScript snippet to expand log to console.log:
+#
+# '.source.coffee':
+#   'Console log':
+#     'prefix': 'log'
+#     'body': 'console.log $1'
+#
+# Each scope (e.g. '.source.coffee' above) can only be declared once.
+#
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it in the
+# Atom Flight Manual:
+# http://flight-manual.atom.io/using-atom/sections/basic-customization/#_cson
+
+# Python スニペ
+'.source.python':
+   'from':
+     'prefix': 'from'
+     'body': """
+            from ${1: } import ${2: }
+     """
+   'import':
+     'prefix': 'import'
+     'body': """
+            import ${1: } as ${2: }
+     """
+   'input':
+     'prefix': 'input'
+     'body': """
+            input()$1
+     """
+   'split':
+     'prefix': 'split'
+     'body': """
+            split()$1
+     """
+   'map':
+     'prefix': 'map'
+     'body': """
+            map(${1:int}, ${2:input().split()})$1
+     """
+   'list':
+     'prefix': 'list'
+     'body': """
+            list(${1: })
+     """
+   'int':
+     'prefix': 'int'
+     'body': """
+            int(${1: })
+     """
+   'range':
+     'prefix': 'range'
+     'body': """
+            range(${1:N}):
+     """
+   'for':
+     'prefix': 'for'
+     'body': """
+            for ${1:i} in range(${2:N})${3:}
+     """
+   'while':
+     'prefix': 'while'
+     'body': """
+            while ${1: }:
+                $2
+     """
+   'if':
+     'prefix': 'if'
+     'body': """
+            if ${1: }:
+                $2
+     """
+   'elif':
+     'prefix': 'elif'
+     'body': """
+            elif ${1: }:
+                $2
+     """
+   'else':
+     'prefix': 'else'
+     'body': """
+            else:
+                $1
+     """
+   'yes':
+     'prefix': 'yes'
+     'body': """
+            print("Yes")
+     """
+   'no':
+     'prefix': 'no'
+     'body': """
+            print("No")
+     """
+   'print':
+     'prefix': 'print'
+     'body': """
+            print(${1: })
+     """
+   'return':
+     'prefix': 'return'
+     'body': """
+            return ${1: }
+     """
+    'continue':
+      'prefix': 'continue'
+      'body': """
+             continue
+     """
+    'break':
+      'prefix': 'break'
+      'body': """
+             break
+     """
+    'append':
+      'prefix': 'append'
+      'body': """
+             append(${1: })
+     """
+    'sort':
+      'prefix': 'sort'
+      'body': """
+             sort($1)
+     """
+
+
+# C++ スニペ
+'.source.cpp':
+   'temprate':
+     'prefix': 'tmp'
+     'body': """
+            #include <bits/stdc++.h>
+            using namespace std;
+
+            int main() {
+                $1
+            }
+     """
+   'main':
+     'prefix': 'main'
+     'body': """
+            int main() {
+                $1
+            }
+     """
+   'for':
+     'prefix': 'for'
+     'body': """
+            for (int ${1:i} = 0; ${1:i} < ${2:n}; ++${1:i}) $3
+    """
+   'if':
+     'prefix': 'if'
+     'body': """
+            if (${1: }) $2
+    """
+   'else':
+     'prefix': 'else'
+     'body': """
+            else $1
+    """
+   'while':
+     'prefix': 'while'
+     'body': """
+            while (${1: }) $2
+    """
+   'cin':
+     'prefix': 'cin'
+     'body': """
+            cin >> $1;
+    """
+   'cout':
+     'prefix': 'cout'
+     'body': """
+            cout << $1 << endl;
+    """
+   'return':
+     'prefix': 'return'
+     'body': """
+            return ${1: };
+    """
+   'long long':
+     'prefix': 'long'
+     'body': """
+            long long
+    """
+   'continue':
+     'prefix': 'continue'
+     'body': """
+            continue;
+    """
+   'break':
+     'prefix': 'break'
+     'body': """
+            break;
+    """
+   'vector':
+     'prefix': 'vector'
+     'body': """
+            vector<${1: }>
+    """
+   'string':
+     'prefix': 'string'
+     'body': """
+            string
+    """
+   'stack':
+     'prefix': 'stack'
+     'body': """
+            stack<${1: }>
+    """
+   'queue':
+     'prefix': 'queue'
+     'body': """
+            queue<${1: }>
+    """
+   'deque':
+     'prefix': 'deque'
+     'body': """
+            deque<${1: }>
+    """
+   'priority_queue':
+     'prefix': 'priority_queue'
+     'body': """
+            priority_queue<${1: }>
+    """
+   'set':
+     'prefix': 'set'
+     'body': """
+            set<${1: }>
+    """
+   'map':
+     'prefix': 'map'
+     'body': """
+            map<${1: }>
+    """
+   'push_back':
+     'prefix': 'push_back'
+     'body': """
+            push_back($1);
+    """
+   'pair':
+     'prefix': 'pair'
+     'body': """
+            pair<${1: }>
+    """
+   'typedef':
+     'prefix': 'typedef'
+     'body': """
+            typedef $1
+    """
+    'bitset':
+        'prefix': 'bitset'
+        'body': """
+        bitset<${1: }>
+        """
+   'next_permutation':
+     'prefix': 'next_permutation'
+     'body': """
+            next_permutation(${1: }.begin(), ${1: }.end())
+    """
+   'binary_search':
+     'prefix': 'binary_search'
+     'body': """
+            binary_search(${1: }.begin(), ${1: }.end(), ${2:})
+    """
+   'lower_bound':
+     'prefix': 'lower_bound'
+     'body': """
+            lower_bound(${1: }.begin(), ${1: }.end(), ${2:})
+    """
+   'upper_bound':
+     'prefix': 'upper_bound'
+     'body': """
+            upper_bound(${1: }.begin(), ${1: }.end(), ${2:})
+    """
+   'max_element':
+     'prefix': 'max_element'
+     'body': """
+            max_element(${1: }.begin(), ${1: }.end())
+    """
+   'min_element':
+     'prefix': 'min_element'
+     'body': """
+            min_element(${1: }.begin(), ${1: }.end())
+    """
+   'sort':
+     'prefix': 'sort'
+     'body': """
+            sort(${1: }.begin(), ${1: }.end());
+    """
+   'resize':
+     'prefix': 'resize'
+     'body': """
+            resize(${1: });
+    """
+   'all':
+     'prefix': 'all'
+     'body': """
+            ${1: }.begin(), ${1: }.end()
+    """
+   'unique':
+     'prefix': 'unique'
+     'body': """
+            unique(${1: }.begin(), ${1: }.end())
+    """
+   'accumulate':
+     'prefix': 'accumulate'
+     'body': """
+            accumulate(${1: }.begin(), ${1: }.end(), ${2:0LL});
+    """
+   'remove':
+     'prefix': 'remove'
+     'body': """
+            remove(${1: }.begin(), ${1: }.end(), ${2:});
+    """
+   'const':
+     'prefix': 'const'
+     'body': """
+            const
+    """
+   'to_string':
+     'prefix': 'to_string'
+     'body': """
+            to_string()
+    """
+   'yes':
+     'prefix': 'yes'
+     'body': """
+            cout << "Yes" << endl;
+    """
+   'no':
+     'prefix': 'no'
+     'body': """
+            cout << "No" << endl;
+    """
+   'setprecision':
+     'prefix': 'setprecision'
+     'body': """
+            setprecision(${1: })
+    """
+   'greater':
+     'prefix': 'greater'
+     'body': """
+            greater<${1: }>
+    """
+   'debug':
+     'prefix': 'debug'
+     'body': """
+            class Debug {
+            private:
+                static int NAME_LENGTH, MAX_WIDTH;
+                static bool IS_MATRIX;
+                static long long INF;
+            public:
+                static void set_NAME_LENGTH(int l) { NAME_LENGTH = l; }
+                static int get_NAME_LENGTH() { return NAME_LENGTH; }
+                static void set_MAX_WIDTH(int w) { MAX_WIDTH = w; }
+                static int get_MAX_WIDTH() { return MAX_WIDTH; }
+                static void set_IS_MATRIX(bool f) { IS_MATRIX = f; }
+                static bool get_IS_MATRIX() { return IS_MATRIX; }
+                static void set_INF(long long i) { INF = i; }
+                static long long get_INF() { return INF; }
+            };
+
+            int Debug::NAME_LENGTH = 0;
+            int Debug::MAX_WIDTH = 0;
+            bool Debug::IS_MATRIX = false;
+            long long Debug::INF = LLONG_MAX;
+
+            // Debug for basic type element
+            template <typename T>
+            int ELEMENT_WIDTH(T& e) {
+                int width;
+                stringstream ss;
+                ss << e;
+                width = ss.str().size();
+                if (ss.str() == to_string(Debug::get_INF())) width = "INF"s.size();
+                if (ss.str() == to_string(-Debug::get_INF())) width = "-INF"s.size();
+                return width;
+            }
+
+            template <typename T>
+            ostream& operator<<(ostream& os, T* e) {
+                stringstream ss;
+                ss << *e;
+                if (ss.str() == to_string(Debug::get_INF())) os << "INF"s;
+                else if (ss.str() == to_string(-Debug::get_INF())) os << "-INF"s;
+                else os << ss.str();
+                return os;
+            }
+            ostream& operator<<(ostream& os, char* e) {
+                os << *e;
+                return os;
+            }
+            ostream& operator<<(ostream& os, const char* e) {
+                string s = e;
+                os << s;
+                return os;
+            }
+
+            // Debug for pair
+            template <typename T, typename U>
+            int ELEMENT_WIDTH(pair<T, U>& p) {
+                return ELEMENT_WIDTH(p.first) + ELEMENT_WIDTH(p.second) + "(, )"s.size();
+            }
+
+            template <typename T, typename U>
+            ostream& operator<<(ostream& os, pair<T, U>* p) {
+                os << "("s << &((*p).first) << ", "s << &((*p).second) << ")"s;
+                return os;
+            }
+            template <typename T, typename U>
+            ostream& operator<<(ostream& os, const pair<T, U>* p) {
+                pair<T, U> p_not_const = *p;
+                os << &p_not_const;
+                return os;
+            }
+
+            // Debug for tuple
+            template<int N, class Tuple>
+            int WIDTH_TUPLE(Tuple& t){
+                return 0;
+            }
+            template<int N, class Tuple, class Head, class... Tail>
+            int WIDTH_TUPLE(Tuple& t) {
+                int width = 0;
+                if (N) width += ", "s.size();
+                width += ELEMENT_WIDTH(get<N>(t)) + WIDTH_TUPLE<N + 1, Tuple, Tail...>(t);
+                return width;
+            }
+            template<class... Ts>
+            int ELEMENT_WIDTH(tuple<Ts...>& t) {
+                return WIDTH_TUPLE<0, tuple<Ts...>, Ts...>(t) + "()"s.size();
+            }
+
+            template<int N, class Tuple>
+            void OUT_TUPLE(ostream& os, Tuple* t){}
+            template<int N, class Tuple, class Head, class... Tail>
+            void OUT_TUPLE(ostream& os, Tuple* t) {
+                if (N) os << ", "s;
+                os << &get<N>(*t);
+                OUT_TUPLE<N + 1, Tuple, Tail...>(os, &(*t));
+            }
+            template<class... Ts>
+            ostream& operator<<(ostream& os, tuple<Ts...>* t) {
+                os << "("s;
+                OUT_TUPLE<0, tuple<Ts...>, Ts...>(os, &(*t));
+                os << ")"s;
+                return os;
+            }
+            template<class... Ts>
+            ostream& operator<<(ostream& os, const tuple<Ts...>* t) {
+                tuple<Ts...> t_not_const = *t;
+                os << &t_not_const;
+                return os;
+            }
+
+            // Debug for vector (1-dimensional)
+            template <typename T>
+            ostream& operator<<(ostream& os, vector<T>* v) {
+                os << "["s;
+                bool flg = true;
+                for (auto e : *v) {
+                    os << (flg ? ""s : ", "s);
+                    if (Debug::get_IS_MATRIX()) {
+                        string space = "";
+                        for (int i = 0; i < Debug::get_MAX_WIDTH() - ELEMENT_WIDTH(e); ++i) space += " ";
+                        os << space;
+                    }
+                    os << &e;
+                    flg = false;
+                }
+                os << "]"s;
+                return os;
+            }
+
+            // Debug for vector (2-dimensional)
+            template <typename T>
+            ostream& operator<<(ostream& os, vector<vector<T>>* v) {
+                Debug::set_IS_MATRIX(true);
+                int width = 0;
+                for (unsigned int i = 0; i < (*v).size(); ++i) {
+                    for (unsigned int j = 0; j < ((*v)[i]).size(); ++j) {
+                        width = max(width, ELEMENT_WIDTH((*v)[i][j]));
+                    }
+                }
+                Debug::set_MAX_WIDTH(width);
+                string space = "";
+                for (int i = 0; i < Debug::get_NAME_LENGTH() + 7; ++i) space += " ";
+                os << "["s;
+                bool flg = true;
+                for (auto e : *v) {
+                    os << (flg ? ""s : "\\\\n" + space);
+                    os << &e;
+                    flg = false;
+                }
+                os << "]"s;
+                Debug::set_IS_MATRIX(false);
+                return os;
+            }
+
+            // Debug for set
+            template <typename T>
+            ostream& operator<<(ostream& os, set<T>* s) {
+                os << "{"s;
+                bool flg = true;
+                for (auto e : *s) {
+                    os << (flg ? ""s : ", "s);
+                    os << &e;
+                    flg = false;
+                }
+                os << "}"s;
+                return os;
+            }
+
+            // Debug for multiset
+            template <typename T>
+            ostream& operator<<(ostream& os, multiset<T>* s) {
+                os << "{"s;
+                bool flg = true;
+                for (auto e : *s) {
+                    os << (flg ? ""s : ", "s);
+                    os << &e;
+                    flg = false;
+                }
+                os << "}"s;
+                return os;
+            }
+
+            // Debug for map
+            template <typename T, typename U>
+            ostream& operator<<(ostream& os, map<T, U>* mp) {
+                os << "{"s;
+                bool flg = true;
+                for (auto e : *mp) {
+                    os << (flg ? ""s : ", "s);
+                    os << &(e.first) << ": "s << &(e.second);
+                    flg = false;
+                }
+                os << "}"s;
+                return os;
+            }
+
+            // Debug for queue
+            template <typename T>
+            ostream& operator<<(ostream& os, queue<T>* que) {
+                queue<T> que_cp = *que;
+                os << "["s;
+                bool flg = true;
+                while (!que_cp.empty()) {
+                    os << (flg ? ""s : ", "s);
+                    os << &(que_cp.front());
+                    que_cp.pop();
+                    flg = false;
+                }
+                os << "]"s;
+                return os;
+            }
+
+            // Debug for priority-queue
+            template <typename T>
+            ostream& operator<<(ostream& os, priority_queue<T>* que) {
+                priority_queue<T> que_cp = *que;
+                os << "["s;
+                bool flg = true;
+                while (!que_cp.empty()) {
+                    os << (flg ? ""s : ", "s);
+                    os << &(que_cp.top());
+                    que_cp.pop();
+                    flg = false;
+                }
+                os << "]"s;
+                return os;
+            }
+
+            template <typename T>
+            ostream& operator<<(ostream& os, priority_queue<T, vector<T>, greater<T>>* que) {
+                priority_queue<T, vector<T>, greater<T>> que_cp = *que;
+                os << "["s;
+                bool flg = true;
+                while (!que_cp.empty()) {
+                    os << (flg ? ""s : ", "s);
+                    os << &(que_cp.top());
+                    que_cp.pop();
+                    flg = false;
+                }
+                os << "]"s;
+                return os;
+            }
+
+            // Debug for deque
+            template <typename T>
+            ostream& operator<<(ostream& os, deque<T>* que) {
+                os << "["s;
+                bool flg = true;
+                for (auto e : *que) {
+                    os << (flg ? ""s : ", "s);
+                    os << &e;
+                    flg = false;
+                }
+                os << "]"s;
+                return os;
+            }
+
+            // Debug assistant
+            #define DUMP(...) INTERNAL_DUMP(#__VA_ARGS__, __VA_ARGS__)
+
+            void REMOVE_SPACE(string& s) {
+                while (s[0] == ' ') {
+                    s = s.substr(1);
+                }
+                while (s[s.size() - 1] == ' ') {
+                    s = s.substr(0, s.size() - 1);
+                }
+            }
+
+            pair<string, string> GET_NAME(string s) {
+                int bracket = 0, idx = 0;
+                while ((unsigned)idx < s.size() && !(s[idx] == ',' && bracket == 0)) {
+                    if (s[idx] == '(') ++bracket;
+                    else if (s[idx] == ')') --bracket;
+                    ++idx;
+                }
+                string other_names;
+                if ((unsigned)idx == s.size()) {
+                    other_names = "";
+                } else {
+                    other_names = s.substr(idx + 1);
+                }
+                string first_name = s.substr(0, idx);
+                REMOVE_SPACE(first_name);
+                REMOVE_SPACE(other_names);
+                return pair<string, string>(first_name, other_names);
+            }
+
+            // Debug main
+            void INTERNAL_DUMP(string name) {}
+            template <class Head, class... Tail>
+            void INTERNAL_DUMP(string name, Head&& head, Tail&&... tail) {
+                pair<string, string> p = GET_NAME(name);
+                Debug::set_NAME_LENGTH(p.first.size());
+                cerr << ">> "s << &(p.first) << " = "s << &head << endl;
+            	INTERNAL_DUMP(p.second, move(tail)...);
+            }
+
+            // End of Debug parts
+            //------------------------------------------------------------------------------
+
+    """
