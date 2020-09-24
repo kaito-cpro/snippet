@@ -135,11 +135,13 @@
 
 # C++ スニペ
 '.source.cpp':
-   'temprate':
+   'template':
      'prefix': 'tmp'
      'body': """
             #include <bits/stdc++.h>
+            #include <atcoder/all>
             using namespace std;
+            using namespace atcoder;
 
             int main() {
                 $1
@@ -152,6 +154,12 @@
                 $1
             }
      """
+    'atcoder':
+      'prefix': 'atcoder'
+      'body': """
+             #include <atcoder/all>
+             using namespace atcoder;
+      """
    'for':
      'prefix': 'for'
      'body': """
@@ -315,7 +323,7 @@
    'accumulate':
      'prefix': 'accumulate'
      'body': """
-            accumulate(${1: }.begin(), ${1: }.end(), ${2:0LL});
+            accumulate(${1: }.begin(), ${1: }.end(), ${2:0LL})
     """
    'remove':
      'prefix': 'remove'
@@ -352,17 +360,32 @@
      'body': """
             greater<${1: }>
     """
+   'segtree':
+     'prefix': 'segtree'
+     'body': """
+            segtree<ll, op, e> seg(${1: });
+    """
+   'fenwick_tree':
+     'prefix': 'fenwick_tree'
+     'body': """
+            fenwick_tree<ll> fw(${1: });
+    """
+   'floor_sum':
+     'prefix': 'floor_sum'
+     'body': """
+            floor_sum($1)
+    """
    'debug':
      'prefix': 'debug'
      'body': """
             class Debug {
             private:
-                static int NAME_LENGTH, MAX_WIDTH;
+                static int DISPLAYED_LENGTH, MAX_WIDTH;
                 static bool IS_MATRIX;
                 static long long INF;
             public:
-                static void set_NAME_LENGTH(int l) { NAME_LENGTH = l; }
-                static int get_NAME_LENGTH() { return NAME_LENGTH; }
+                static void set_DISPLAYED_LENGTH(int l) { DISPLAYED_LENGTH = l; }
+                static int get_DISPLAYED_LENGTH() { return DISPLAYED_LENGTH; }
                 static void set_MAX_WIDTH(int w) { MAX_WIDTH = w; }
                 static int get_MAX_WIDTH() { return MAX_WIDTH; }
                 static void set_IS_MATRIX(bool f) { IS_MATRIX = f; }
@@ -371,7 +394,7 @@
                 static long long get_INF() { return INF; }
             };
 
-            int Debug::NAME_LENGTH = 0;
+            int Debug::DISPLAYED_LENGTH = 0;
             int Debug::MAX_WIDTH = 0;
             bool Debug::IS_MATRIX = false;
             long long Debug::INF = LLONG_MAX;
@@ -466,6 +489,16 @@
 
             // Debug for vector (1-dimensional)
             template <typename T>
+            int ELEMENT_WIDTH(vector<T>& v) {
+                int width = 0;
+                for (auto e : v) {
+                    width += ELEMENT_WIDTH(e) + ", "s.size();
+                }
+                width += "[]"s.size() - ", "s.size();
+                return width;
+            }
+
+            template <typename T>
             ostream& operator<<(ostream& os, vector<T>* v) {
                 os << "["s;
                 bool flg = true;
@@ -485,6 +518,18 @@
 
             // Debug for vector (2-dimensional)
             template <typename T>
+            int ELEMENT_WIDTH(vector<vector<T>>& v) {
+                int max_element_width = 0, max_length = 0;
+                for (auto ve : v) {
+                    for (auto e : ve) {
+                        max_element_width = max(max_element_width, ELEMENT_WIDTH(e));
+                    }
+                    max_length = max(max_length, (int)ve.size());
+                }
+                return (max_element_width + ", "s.size()) * max_length + "[]"s.size();
+            }
+
+            template <typename T>
             ostream& operator<<(ostream& os, vector<vector<T>>* v) {
                 Debug::set_IS_MATRIX(true);
                 int width = 0;
@@ -494,9 +539,9 @@
                     }
                 }
                 Debug::set_MAX_WIDTH(width);
-                string space = "";
-                for (int i = 0; i < Debug::get_NAME_LENGTH() + 7; ++i) space += " ";
                 os << "["s;
+                string space = "";
+                for (int i = 0; i < Debug::get_DISPLAYED_LENGTH() + "["s.size(); ++i) space += " ";
                 bool flg = true;
                 for (auto e : *v) {
                     os << (flg ? ""s : "\\\\n" + space);
@@ -613,6 +658,7 @@
 
             // Debug assistant
             #define DUMP(...) INTERNAL_DUMP(#__VA_ARGS__, __VA_ARGS__)
+            #define DUMPS(...) INTERNAL_DUMPS(#__VA_ARGS__, 0, __VA_ARGS__)
 
             void REMOVE_SPACE(string& s) {
                 while (s[0] == ' ') {
@@ -647,9 +693,41 @@
             template <class Head, class... Tail>
             void INTERNAL_DUMP(string name, Head&& head, Tail&&... tail) {
                 pair<string, string> p = GET_NAME(name);
-                Debug::set_NAME_LENGTH(p.first.size());
-                cerr << ">> "s << &(p.first) << " = "s << &head << endl;
+                cerr << ">> "s << &(p.first) << " = "s;
+                Debug::set_DISPLAYED_LENGTH(">> "s.size() + p.first.size() + " = "s.size());
+                cerr << &head << endl;
             	INTERNAL_DUMP(p.second, move(tail)...);
+            }
+
+            void INTERNAL_DUMPS(string name, int displayed_length) {
+                cerr << ")"s << endl;
+            }
+            template <class Head, class... Tail>
+            void INTERNAL_DUMPS(string name, int displayed_length, Head&& head, Tail&&... tail) {
+                bool first_call = displayed_length == 0;
+                if (first_call) {
+                    cerr << ">> "s << "("s;  displayed_length += ">> "s.size() + "("s.size();
+                    pair<string, string> p;
+                    while (!name.empty()) {
+                        pair<string, string> p = GET_NAME(name);
+                        cerr << &(p.first);  displayed_length += ELEMENT_WIDTH(p.first);
+                        if (!p.second.empty()) {
+                            cerr << ", "s;  displayed_length += ", "s.size();
+                        }
+                        name = p.second;
+                    }
+                    cerr << ")"s << " = "s;  displayed_length += ")"s.size() + " = "s.size();
+                }
+                if (first_call) {
+                    cerr << "("s;  displayed_length += "("s.size();
+                    Debug::set_DISPLAYED_LENGTH(displayed_length);
+                    cerr << &head;  displayed_length += ELEMENT_WIDTH(head);
+                } else {
+                    cerr << ", "s;  displayed_length += ", "s.size();
+                    Debug::set_DISPLAYED_LENGTH(displayed_length);
+                    cerr << &head;  displayed_length += ELEMENT_WIDTH(head);
+                }
+            	INTERNAL_DUMPS("", displayed_length, move(tail)...);
             }
 
             // End of Debug parts
