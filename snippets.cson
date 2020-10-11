@@ -143,9 +143,36 @@
             using namespace std;
             using namespace atcoder;
 
+            template <typename T>
+            vector<T> make_vector(int n) {
+            // vector<T> make_vector(int n, T x) {
+                return vector<T>(n);
+                // return vector<T>(n, x);
+            }
+            template <typename T, typename... Tail>
+            auto make_vector(int n, Tail... tail) {
+                return vector<decltype(make_vector<T>(tail...))>(n, make_vector<T>(tail...));
+            }
+
+            using ll = long long;
+            using P = pair<int, int>;
+            using mint = modint1000000007;
+            const int INF = (1LL << 31) - 1;
+            const int MOD = 1e9 + 7;
+
             int main() {
                 $1
             }
+     """
+   'include':
+     'prefix': 'include'
+     'body': """
+            #include <bits/stdc++.h>
+            using namespace std;
+
+            using ll = long long;
+
+
      """
    'main':
      'prefix': 'main'
@@ -401,7 +428,7 @@
 
             // Debug for basic type element
             template <typename T>
-            int ELEMENT_WIDTH(T& e) {
+            int ELEMENT_WIDTH(T e) {
                 int width;
                 stringstream ss;
                 ss << e;
@@ -430,9 +457,33 @@
                 return os;
             }
 
+            // Debug for ACL::modint
+            int ELEMENT_WIDTH(modint e) {
+                return ELEMENT_WIDTH(e.val());
+            }
+            int ELEMENT_WIDTH(modint998244353 e) {
+                return ELEMENT_WIDTH(e.val());
+            }
+            int ELEMENT_WIDTH(modint1000000007 e) {
+                return ELEMENT_WIDTH(e.val());
+            }
+
+            ostream& operator<<(ostream& os, modint* e) {
+                os << (*e).val();
+                return os;
+            }
+            ostream& operator<<(ostream& os, modint998244353* e) {
+                os << (*e).val();
+                return os;
+            }
+            ostream& operator<<(ostream& os, modint1000000007* e) {
+                os << (*e).val();
+                return os;
+            }
+
             // Debug for pair
             template <typename T, typename U>
-            int ELEMENT_WIDTH(pair<T, U>& p) {
+            int ELEMENT_WIDTH(pair<T, U> p) {
                 return ELEMENT_WIDTH(p.first) + ELEMENT_WIDTH(p.second) + "(, )"s.size();
             }
 
@@ -450,18 +501,18 @@
 
             // Debug for tuple
             template<int N, class Tuple>
-            int WIDTH_TUPLE(Tuple& t){
+            int WIDTH_TUPLE(Tuple t){
                 return 0;
             }
             template<int N, class Tuple, class Head, class... Tail>
-            int WIDTH_TUPLE(Tuple& t) {
+            int WIDTH_TUPLE(Tuple t) {
                 int width = 0;
                 if (N) width += ", "s.size();
                 width += ELEMENT_WIDTH(get<N>(t)) + WIDTH_TUPLE<N + 1, Tuple, Tail...>(t);
                 return width;
             }
             template<class... Ts>
-            int ELEMENT_WIDTH(tuple<Ts...>& t) {
+            int ELEMENT_WIDTH(tuple<Ts...> t) {
                 return WIDTH_TUPLE<0, tuple<Ts...>, Ts...>(t) + "()"s.size();
             }
 
@@ -487,9 +538,69 @@
                 return os;
             }
 
+            // Debug for ACL::mf_graph
+            int ELEMENT_WIDTH(mf_graph<int>::edge e) {
+                auto t = make_tuple(e.from, e.to, e.flow);
+                return ELEMENT_WIDTH(t);
+            }
+            int ELEMENT_WIDTH(mf_graph<long long>::edge e) {
+                auto t = make_tuple(e.from, e.to, e.flow);
+                return ELEMENT_WIDTH(t);
+            }
+
+            ostream& operator<<(ostream& os, mf_graph<int>::edge* e) {
+                auto t = make_tuple((*e).from, (*e).to, (*e).flow);
+                os << &t;
+                return os;
+            }
+            ostream& operator<<(ostream& os, mf_graph<long long>::edge* e) {
+                auto t = make_tuple((*e).from, (*e).to, (*e).flow);
+                os << &t;
+                return os;
+            }
+
+            // Debug for ACL::mcf_graph
+            int ELEMENT_WIDTH(mcf_graph<int, int>::edge e) {
+                auto t = make_tuple(e.from, e.to, e.flow, e.cost);
+                return ELEMENT_WIDTH(t);
+            }
+            int ELEMENT_WIDTH(mcf_graph<int, long long>::edge e) {
+                auto t = make_tuple(e.from, e.to, e.flow, e.cost);
+                return ELEMENT_WIDTH(t);
+            }
+            int ELEMENT_WIDTH(mcf_graph<long long, int>::edge e) {
+                auto t = make_tuple(e.from, e.to, e.flow, e.cost);
+                return ELEMENT_WIDTH(t);
+            }
+            int ELEMENT_WIDTH(mcf_graph<long long, long long>::edge e) {
+                auto t = make_tuple(e.from, e.to, e.flow, e.cost);
+                return ELEMENT_WIDTH(t);
+            }
+
+            ostream& operator<<(ostream& os, mcf_graph<int, int>::edge* e) {
+                auto t = make_tuple((*e).from, (*e).to, (*e).flow, (*e).cost);
+                os << &t;
+                return os;
+            }
+            ostream& operator<<(ostream& os, mcf_graph<int, long long>::edge* e) {
+                auto t = make_tuple((*e).from, (*e).to, (*e).flow, (*e).cost);
+                os << &t;
+                return os;
+            }
+            ostream& operator<<(ostream& os, mcf_graph<long long, int>::edge* e) {
+                auto t = make_tuple((*e).from, (*e).to, (*e).flow, (*e).cost);
+                os << &t;
+                return os;
+            }
+            ostream& operator<<(ostream& os, mcf_graph<long long, long long>::edge* e) {
+                auto t = make_tuple((*e).from, (*e).to, (*e).flow, (*e).cost);
+                os << &t;
+                return os;
+            }
+
             // Debug for vector (1-dimensional)
             template <typename T>
-            int ELEMENT_WIDTH(vector<T>& v) {
+            int ELEMENT_WIDTH(vector<T> v) {
                 int width = 0;
                 for (auto e : v) {
                     width += ELEMENT_WIDTH(e) + ", "s.size();
@@ -518,7 +629,7 @@
 
             // Debug for vector (2-dimensional)
             template <typename T>
-            int ELEMENT_WIDTH(vector<vector<T>>& v) {
+            int ELEMENT_WIDTH(vector<vector<T>> v) {
                 int max_element_width = 0, max_length = 0;
                 for (auto ve : v) {
                     for (auto e : ve) {
@@ -654,6 +765,60 @@
                 }
                 os << "]"s;
                 return os;
+            }
+
+            // sub-vevtor
+            template <typename T>
+            vector<T> subvec(vector<T> v, int l, int r) {
+                assert(0 <= l && l < v.size());
+                assert(0 < r && r <= v.size());
+                vector<T> res;
+                for (int i = l; i < r; ++i) {
+                    res.push_back(v[i]);
+                }
+                return res;
+            }
+            template <typename T>
+            vector<vector<T>> subvec(vector<vector<T>> v, int l0, int r0, int l1, int r1) {
+                assert(0 <= l0 && l0 < v.size());
+                assert(0 < r0 && r0 <= v.size());
+                assert(0 <= l1 && 0 < r1 && l0 < r0 && l1 < r1);
+                vector<vector<T>> res(r0 - l0);
+                int out_of_range = 0;
+                for (int i = l0; i < r0; ++i) {
+                    for (int j = l1; j < r1; ++j) {
+                        if (0 <= j && j < v[i].size()) res[i].push_back(v[i][j]);
+                        else {
+                            ++out_of_range;
+                            break;
+                        }
+                    }
+                }
+                assert(out_of_range < res.size());
+                return res;
+            }
+
+            // transposed-vector
+            template <typename T>
+            vector<vector<T>> transpose(vector<T> v) {
+                int n = v.size();
+                vector<vector<T>> res(n, vector<T>(1));
+                for (int i = 0; i < n; ++i) res[i][0] = v[i];
+                return res;
+            }
+            template <typename T>
+            vector<vector<T>> transpose(vector<vector<T>> v) {
+                int n = v.size(), m = v[0].size();
+                for (int i = 0; i < n; ++i) {
+                    assert(v[i].size() == v[0].size());
+                }
+                vector<vector<T>> res(m, vector<T>(n));
+                for (int i = 0; i < m; ++i) {
+                    for (int j = 0; j < n; ++j) {
+                        res[i][j] = v[j][i];
+                    }
+                }
+                return res;
             }
 
             // Debug assistant
