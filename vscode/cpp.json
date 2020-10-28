@@ -25,7 +25,7 @@
             "const int MOD = 1000000007;",
 			"",
             "int main() {",
-            "    $1",
+            "    $0",
 			"}"
 		]
 	},
@@ -48,7 +48,7 @@
 		"prefix": "main",
 		"body": [
 			"int main() {",
-			"    $1",
+			"    $0",
 			"}"
 		]
 	},
@@ -56,42 +56,42 @@
 	"for": {
 		"prefix": "for",
 		"body": [
-			"for (int ${1:i} = 0; ${1:i} < ${2:n}; ++${1:i}) $3"
+			"for (int ${1:i} = 0; ${1:i} < ${2:n}; ++${1:i}) $0"
 		]
 	},
 
 	"while": {
 		"prefix": "while",
 		"body": [
-			"while (${1: }) $2"
+			"while (${1: }) $0"
 		]
 	},
 
 	"if": {
 		"prefix": "if",
 		"body": [
-			"if (${1: }) $2"
+			"if (${1: }) $0"
 		]
 	},
 
 	"else": {
 		"prefix": "else",
 		"body": [
-			"else $1"
+			"else $0"
 		]
 	},
 
 	"cin": {
 		"prefix": "cin",
 		"body": [
-			"cin >> $1;"
+			"cin >> $0;"
 		]
 	},
 
 	"cout": {
 		"prefix": "cout",
 		"body": [
-			"cout << $1 << endl;"
+			"cout << $0 << endl;"
 		]
 	},
 
@@ -105,7 +105,7 @@
 	"long long": {
 		"prefix": "long",
 		"body": [
-			"long long "
+			"long long"
 		]
 	},
 
@@ -182,7 +182,7 @@
 	"push_back": {
 		"prefix": "push_back",
 		"body": [
-			"push_back($1);"
+			"push_back($0);"
 		]
 	},
 
@@ -196,14 +196,14 @@
 	"typedef": {
 		"prefix": "typedef",
 		"body": [
-			"typedef $1"
+			"typedef $0"
 		]
 	},
 
 	"namespace": {
 		"prefix": "namespace",
 		"body": [
-			"namespace $1"
+			"namespace $0"
 		]
 	},
 
@@ -218,6 +218,13 @@
 		"prefix": "next_permutation",
 		"body": [
 			"next_permutation(${1: }.begin(), ${1: }.end())"
+		]
+	},
+
+	"numeric_limits": {
+		"prefix": "numeric_limits",
+		"body": [
+			"numeric_limits<${1: }>::max() / 2;"
 		]
 	},
 
@@ -343,21 +350,21 @@
 	"segtree": {
 		"prefix": "segtree",
 		"body": [
-			"segtree<S, op, e> seg(${1: });"
+			"segtree<S, op, e> seg(${1:N});"
 		]
 	},
 
 	"lazy_segtree": {
 		"prefix": "lazy_segtree",
 		"body": [
-			"lazy_segtree<S, op, e, F, mapping, composition, id> seg(${1: });"
+			"lazy_segtree<S, op, e, F, mapping, composition, id> seg(${1:N});"
 		]
 	},
 
 	"fenwick": {
 		"prefix": "fenwick",
 		"body": [
-			"fenwick<${1: }> fw(${2:});"
+			"fenwick<${1: }> fw(${2:N});"
 		]
 	},
 
@@ -371,14 +378,14 @@
 	"DUMP": {
 		"prefix": "DUMP",
 		"body": [
-			"DUMP($1);"
+			"DUMP($0);"
 		]
 	},
 
 	"DUMPS": {
 		"prefix": "DUMPS",
 		"body": [
-			"DUMPS($1);"
+			"DUMPS($0);"
 		]
 	},
 

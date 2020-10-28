@@ -16,21 +16,21 @@
 	"input": {
 		"prefix": "input",
 		"body": [
-			"input()$1"
+			"input()$0"
 		]
 	},
 	
 	"split": {
 		"prefix": "split",
 		"body": [
-			"split()$1"
+			"split()$0"
 		]
 	},
 
 	"map": {
 		"prefix": "map",
 		"body": [
-			"map(${1:int}, ${2:input().split()})$3"
+			"map(${1:int}, ${2:input().split()})$0"
 		]
 	},
 
@@ -59,7 +59,7 @@
 		"prefix": "for",
 		"body": [
 			"for ${1:i} in range(${2:N}):",
-			"    $3"
+			"    $0"
 		]
 	},
 
@@ -67,7 +67,7 @@
 		"prefix": "while",
 		"body": [
 			"while ${1: }:",
-			"    $2"
+			"    $0"
 		]
 	},
 
@@ -75,7 +75,7 @@
 		"prefix": "if",
 		"body": [
 			"if ${1: }:",
-			"    $2"
+			"    $0"
 		]
 	},
 
@@ -83,7 +83,7 @@
 		"prefix": "elif",
 		"body": [
 			"elif ${1: }:",
-			"    $2"
+			"    $0"
 		]
 	},
 
@@ -91,7 +91,7 @@
 		"prefix": "else",
 		"body": [
 			"else:",
-			"    $1"
+			"    $0"
 		]
 	},
 
