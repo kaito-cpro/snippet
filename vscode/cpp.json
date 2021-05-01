@@ -286,6 +286,13 @@
 		]
 	},
 
+	"reverse": {
+		"prefix": "reverse",
+		"body": [
+			"reverse(${1: }.begin(), ${1: }.end());"
+		]
+	},
+
 	"resize": {
 		"prefix": "resize",
 		"body": [
