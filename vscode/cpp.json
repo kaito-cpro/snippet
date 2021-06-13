@@ -386,20 +386,6 @@
 		]
 	},
 
-	"DUMP": {
-		"prefix": "DUMP",
-		"body": [
-			"DUMP($0);"
-		]
-	},
-
-	"DUMPS": {
-		"prefix": "DUMPS",
-		"body": [
-			"DUMPS($0);"
-		]
-	},
-
 	"debug": {
 		"prefix": "debug",
 		"body": [
@@ -841,8 +827,8 @@
 			"}",
 			"",
 			"// Debug assistant",
-			"#define DUMP(...) INTERNAL_DUMP(#__VA_ARGS__, __VA_ARGS__)",
-			"#define DUMPS(...) INTERNAL_DUMPS(#__VA_ARGS__, 0, __VA_ARGS__)",
+			"#define debug(...) INTERNAL_DUMP(#__VA_ARGS__, __VA_ARGS__)",
+			"#define debugs(...) INTERNAL_DUMPS(#__VA_ARGS__, 0, __VA_ARGS__)",
 			"",
 			"void REMOVE_SPACE(string& s) {",
 			"    while (s[0] == ' ') {",
