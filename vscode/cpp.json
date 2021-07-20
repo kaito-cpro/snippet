@@ -4,6 +4,7 @@
 		"body": [
 			"#include <bits/stdc++.h>",
             "#include <atcoder/all>",
+            "#include <debug.hpp>",
             "using namespace std;",
 			"using namespace atcoder;",
 			"",
