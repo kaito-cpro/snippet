@@ -10,7 +10,7 @@
 			"",
 			"template <typename T> vector<T> make_vector(int n) { return vector<T>(n); }",
 			"template <typename T, typename... Tail> auto make_vector(int n, Tail... tail) {",
-				"return vector<decltype(make_vector<T>(tail...))>(n, make_vector<T>(tail...));",
+			"    return vector<decltype(make_vector<T>(tail...))>(n, make_vector<T>(tail...));",
 			"}",
 			"template <class T> bool chmax(T& l, const T& r) { return l < r ? l = r, true : false; }",
 			"template <class T> bool chmin(T& l, const T& r) { return l > r ? l = r, true : false; }",
