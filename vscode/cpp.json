@@ -16,7 +16,6 @@
 			"template <class T> bool chmin(T& l, const T& r) { return l > r ? l = r, true : false; }",
 			"",
             "using ll = long long;",
-            "using P = pair<ll, ll>;",
             "const int INF = numeric_limits<int>::max() / 2;",
             "const ll LINF = numeric_limits<ll>::max() / 2;",
             "using mint = modint1000000007;",
