@@ -18,7 +18,7 @@
             "using ll = long long;",
             "const int INF = numeric_limits<int>::max() / 2;",
             "const ll LINF = numeric_limits<ll>::max() / 2;",
-            "using mint = modint1000000007;",
+            "using mint = modint998244353;",
 			"",
             "int main() {",
             "    $0",
